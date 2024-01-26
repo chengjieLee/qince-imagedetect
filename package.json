@@ -1,0 +1,23 @@
+{
+  "name": "qince-imageetect",
+  "version": "1.0.0",
+  "description": "判断图片明暗、模糊度工具",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "rollup -c",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chengjieLee/qince-imageetect.git"
+  },
+  "author": "lichengjie",
+  "license": "ISC",
+  "dependencies": {
+    "rollup": "^4.9.6",
+    "tracking": "^1.1.3"
+  },
+  "devDependencies": {
+    "@rollup/plugin-terser": "^0.4.4"
+  }
+}
