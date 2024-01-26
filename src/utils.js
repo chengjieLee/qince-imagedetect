@@ -1,11 +1,11 @@
-import "tracking";
+import trackingImage from "./trackingImage.js";
 
 const getEnvironment = () => {
 	const ua = window?.navigator?.userAgent?.toLowerCase();
-	const isWeixin = ua.indexOf("micromessenger") !== -1;
+	const isWeixin = ua.indexOf("micromessenger") !== -1 || ua.indexOf("wechat") !== -1 || (!!window.wx && !window.Image);
 	const isInApp = /(^|;\s)app\//.test(ua);
 	if (isWeixin) {
-		if (window?.__wxjs_environment === "miniprogram") {
+		if (window?.__wxjs_environment === "miniprogram" || !!window?.__wxAppCode__) {
 			return "wxapp";
 		} else {
 			return "wxh5";
@@ -20,7 +20,7 @@ const getEnvironment = () => {
 };
 
 const imageDetect = () => {
-	const tracking = window.tracking;
+	// const tracking = window.tracking;
 	const env = getEnvironment();
 	/**
 	 * @param { String } url 图片url 本地资源路径。。。
@@ -51,7 +51,7 @@ const imageDetect = () => {
 							context.drawImage(image, 0, 0, res.width, res.height);
 							const imgData = context.getImageData(0, 0, res.width, res.height);
 
-							const gray = tracking.Image.grayscale(
+							const gray = trackingImage.grayscale(
 								imgData?.data,
 								res.width,
 								res.height
@@ -89,7 +89,7 @@ const imageDetect = () => {
 
 						context.drawImage(image, 0, 0, canvas.width, canvas.height);
 
-						const gray = tracking.Image.grayscale(
+						const gray = trackingImage.grayscale(
 							context.getImageData(0, 0, canvas.width, canvas.height)?.data,
 							canvas.width,
 							canvas.height
@@ -227,4 +227,4 @@ const imageDetect = () => {
 	};
 };
 
-export default imageDetect;
+export default imageDetect();
