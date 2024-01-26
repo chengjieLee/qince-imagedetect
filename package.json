@@ -1,5 +1,5 @@
 {
-  "name": "qince-imageetect",
+  "name": "qince-imagedetect",
   "version": "1.0.0",
   "description": "判断图片明暗、模糊度工具",
   "main": "dist/index.js",
