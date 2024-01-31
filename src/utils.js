@@ -28,7 +28,7 @@ const imageDetect = () => {
 	 * @description 检测图片的明暗度，返回一个promise，返回值为一个对象，包含brightness: Number,isGray: Boolean,isBright: Boolean；brightness: 明暗值，isGray：是否过暗，isBright：是否过亮
 	 */
 	const checkLuminance = (url) => {
-		return new Promise((resolve, reject) => {
+		return new Promise((resolve, reject) => {		
 			if (env === "wxapp") {
 				try {
 					wx.getImageInfo({
@@ -109,10 +109,14 @@ const imageDetect = () => {
 						});
 					};
 					image.onerror = () => {
-						reject(new Error("图片加载失败"));
+						reject({
+							error: '图片加载失败'
+						});
 					};
 				} catch (error) {
-					reject(error);
+					reject({
+						error: JSON.stringify(error)
+					});
 				}
 			}
 		});
@@ -169,7 +173,9 @@ const imageDetect = () => {
 						});
 					},
 					fail: (error) => {
-						reject(error);
+						reject({
+							error: JSON.stringify(error)
+						});
 					},
 				});
 			} else {
@@ -212,10 +218,14 @@ const imageDetect = () => {
 						});
 					};
 					image.onerror = () => {
-						reject(new Error("图片加载失败"));
+						reject({
+							error: '图片加载失败'
+						});
 					};
 				} catch (err) {
-					reject(err);
+					reject({
+						error: JSON.stringify(err)
+					});
 				}
 			}
 		});

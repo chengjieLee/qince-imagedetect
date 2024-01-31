@@ -47,7 +47,8 @@ import { ImageUploader } from 'antd-mobile'
 
 export default () => {
   const [fileList, setFileList] = useState([])
-  const handleDetect = (files) => {
+  
+  const handleDetect = async (files) => {
     const url = files[files?.length - 1]?.url
     const luminance = await checkLuminance(url)
     const dim = await checkDim(url)
